@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Cek Suhu | by Fadhli</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="shadow-sm p-3 mb-5 bg-white rounded">
+            <p>Konversi Suhu</p>
+            <div class="row">
+                <div class="col-md-5">
+                    <input class="form-control form-control-lg" type="text" id="suhu1" value="0">
+                    <select class="custom-select my-1 mr-sm-2 select-suhu1" id="inlineFormCustomSelectPref">
+                        <option value="1" selected>Celsius</option>
+                        <option value="2">Farenheit</option>
+                        <option value="3">Kelvin</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="samadengan">=</div>
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control form-control-lg" id="suhu2" type="text">
+                    <select class="custom-select my-1 mr-sm-2 select-suhu2" id="inlineFormCustomSelectPref">
+                        <option value="1">Celsius</option>
+                        <option value="2" selected>Farenheit</option>
+                        <option value="3">Kelvin</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            /** Konversi Suhu, We're is open to contribute!
+            * 1 = Celcius
+            * 2 = Farenheit
+            * 3 = Kelvin
+            **/
+            $('#suhu1').on('input', () => {
+                let vas1 = $('.select-suhu1').children('option:selected').val()
+                let vas2 = $('.select-suhu2').children('option:selected').val()
+
+                $('.select-suhu1').change(function () {
+                    vas1 = $(this).children('option:selected').val()
+                });
+
+                $('.select-suhu2').change(function () {
+                    vas2 = $(this).children('option:selected').val()
+                });
+
+                switch (vas1) {
+                    case '2':
+                        switch (vas2) {
+                            case '1':
+                                $('#suhu2').val('')
+                                rToC1 = ($('#suhu1').val() - 32) * 5 / 9
+                                $('#suhu2').val(rToC1.toFixed(4))
+                                break;
+                            case '3':
+                                $('#suhu2').val('')
+                                rToK1 = ($('#suhu1').val() - 32) * (5 / 9) + 273.15
+                                $('#suhu2').val(rToK1.toFixed(4))
+                                break;
+                            default:
+                                $('#suhu2').val('')
+                                $('#suhu2').val($('#suhu1').val())
+                                break;
+                        }
+                        break;
+                    case '3':
+                        switch (vas2) {
+                            case '1':
+                                $('#suhu2').val('')
+                                rToC2 = ($('#suhu1').val() - 273.15)
+                                $('#suhu2').val(rToC2.toFixed(2))
+                                break;
+                            case '2':
+                                $('#suhu2').val('')
+                                rToK2 = ($('#suhu1').val() - 273.15) * (9 / 5) + 32
+                                $('#suhu2').val(rToK2.toFixed(2))
+                                break;
+                            default:
+                                $('#suhu2').val('')
+                                $('#suhu2').val($('#suhu1').val())
+                                break;
+                        }
+                        break;
+                    default:
+                        switch (vas2) {
+                            case '1':
+                                $('#suhu2').val('')
+                                $('#suhu2').val($('#suhu1').val())
+                                break;
+                            case '3':
+                                $('#suhu2').val('')
+                                rToK = Number($('#suhu1').val()) + 273.15
+                                $('#suhu2').val(rToK)
+                                break;
+                            default:
+                                $('#suhu2').val('')
+                                rToF = ($('#suhu1').val() * (9 / 5)) + 32
+                                $('#suhu2').val(rToF)
+                                break;
+                        }
+                        break;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
