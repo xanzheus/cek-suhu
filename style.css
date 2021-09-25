@@ -1,0 +1,20 @@
+.samadengan {
+    display: inline-block;
+    line-height: 44px;
+    width: 27px;
+    text-align: center;
+    font-size: 26px;
+    color: #70757a;
+    padding-top: 10px;
+    vertical-align: top;
+    margin-left: 37%;
+    margin-right: 100px;
+}
+
+.custom-select {
+    background-color: rgb(248, 249, 250);
+}
+
+.container {
+    margin-top: 20%;
+}
